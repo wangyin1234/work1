@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        # 注册中心地址
+        server-addr: middletest.wison.com:8848
+        # 命名空间
+        namespace: b84945ff-30e0-4cf1-9e20-f73619b3d3f2
+      config:
+        # 配置中心地址
+        server-addr: 10.99.10.123:8848
+        # 命名空间
+        namespace: b84945ff-30e0-4cf1-9e20-f73619b3d3f2
+        # 配置格式
+        file-extension: yaml
+
+
+fwoa:
+  url: https://fwtest.wison.com/services/WorkflowService
+
+workFlowId:
+  purPackage: 6904
+  projectMrPlanFlowId: 7041
+  mrReleaseFlowId: 7042
+  tbeDesignFlowId: 7062
+  tbeBuyFlowId: 7061
+
+
+supplier:
+  url:
+    pushClarification: http://10.99.7.35:4000/api/Open/PushTechinicalBidClarificationFinish
+    send: http://10.99.7.35:4000/api/Open/PushTechinicalBid
+    pushFinish: http://10.99.7.35:4000/api/Open/PushTechinicalBidFinish
+    reply: http://10.99.7.35:4000/api/Open/PushTechinicalBidClarificationFileData
+    pushSupplierParticipateFlag: http://10.99.7.35:4000/api/Open/PushTechinicalBidSupplierParticipateFlag

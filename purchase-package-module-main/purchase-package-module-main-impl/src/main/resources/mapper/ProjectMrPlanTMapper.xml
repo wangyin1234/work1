@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.main.mapper.ProjectMrPlanTMapper">
+    <sql id="tableName">
+        project_mr_plan_t
+    </sql>
+
+    <sql id="baseColumn">
+        id,pur_pck_id,create_by,create_time,update_by,update_time,project_id,project_code,discipline_name,mdb_purchase_package_no,zone_code,technical_document_no_wison,technical_document_no_others,file_name,principal_item_code,plan_date,forecast_date,actual_date,overdue,po_planning_date,requested_delivery_time,design_discipline_leader,buyer,remarks,mdb_purchase_package_name,request_id,discipline_id,mr_type,fob_date
+    </sql>
+
+</mapper>

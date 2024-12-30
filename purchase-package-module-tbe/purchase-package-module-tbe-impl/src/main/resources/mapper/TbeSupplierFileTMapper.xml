@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.tbe.mapper.TbeSupplierFileTMapper">
+    <sql id="tableName">
+        tbe_supplier_file_t
+    </sql>
+
+    <sql id="baseColumn">
+        id,file_name,file_link,vendor_code,file_type,create_by,update_by,create_time,update_time,price_check_number,zone_code,project_code,is_send
+    </sql>
+
+    <select id="listByPriceCheckNumber" resultType="com.wison.purchase.packages.module.tbe.domain.TbeSupplierFileT">
+        select
+        <include refid="baseColumn"/>
+        from
+        <include refid="tableName"/>
+        where zone_code = #{zoneCode} and project_code = #{projectCode} and price_check_number = #{priceCheckNumber} and vendor_code = #{vendorCode} order by update_time desc
+    </select>
+</mapper>

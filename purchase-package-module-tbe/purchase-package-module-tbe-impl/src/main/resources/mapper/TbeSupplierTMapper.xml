@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.tbe.mapper.TbeSupplierTMapper">
+    <sql id="tableName">
+        tbe_supplier_t
+    </sql>
+
+    <sql id="baseColumn">
+        id,vendor_code,supplier_name,technical_review_opinion,remarks,create_by,update_by,create_time,update_time,price_check_number,tbe_score,tbe_result,contactor_name,contactor_phone,contactor_email,zone_code,project_code,clarification_finish_flag,buyer_reason
+    </sql>
+
+    <resultMap id="OneToMany" type="com.wison.purchase.packages.module.tbe.domain.vo.TbeSupplierTVo">
+        <collection property="tbeSupplierFileList"
+                    column="{priceCheckNumber=price_check_number, vendorCode=vendor_code, zoneCode=zone_code, projectCode=project_code}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.TbeSupplierFileTMapper.listByPriceCheckNumber">
+        </collection>
+    </resultMap>
+
+    <select id="listByPriceCheckNumber" resultMap="OneToMany">
+        select
+        <include refid="baseColumn"/>
+        from
+        <include refid="tableName"/>
+        where zone_code = #{zoneCode} and project_code = #{projectCode} and price_check_number = #{priceCheckNumber}
+        <if test="technicalReviewOpinion">
+            and technical_review_opinion = #{technicalReviewOpinion}
+        </if>
+    </select>
+</mapper>

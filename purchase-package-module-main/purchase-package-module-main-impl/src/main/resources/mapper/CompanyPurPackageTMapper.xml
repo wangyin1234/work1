@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.main.mapper.CompanyPurPackageTMapper">
+    <sql id="tableName">
+        company_pur_package_t
+    </sql>
+
+    <sql id="baseColumn">
+        mdbsn,id,discipline_name,discipline_id,mdblarge_name,mdblarge_id,mdbmedium_name,mdbmedium_id,mdbsmall_name,mdbsmall_id,mdb_purchase_package_no,mdb_comments,create_by,create_time,update_by,update_time,status,internal_id,zone_code
+    </sql>
+    
+    <select id="queryList" resultType="com.wison.purchase.packages.module.main.domain.CompanyPurPackageT">
+        SELECT mdbsn,c.discipline_name,c.discipline_id,mdblarge_name,mdblarge_id,mdbmedium_name,mdbmedium_id,mdbsmall_name,mdbsmall_id,c.mdb_purchase_package_no,mdb_comments,c.create_by,c.create_time,c.update_by,c.update_time,c.status,internal_id,c.zone_code,
+        IF(p.id is not null, 'Y', '') isExist, p.sub_package_no, p.id, p.project_code FROM company_pur_package_t c
+        <choose>
+            <when test="bo.projectCode != null">
+                inner join
+            </when>
+            <otherwise>
+                left join
+            </otherwise>
+        </choose>
+        project_pur_package_t p on c.zone_code = p.zone_code and c.mdb_purchase_package_no = p.mdb_purchase_package_no and c.discipline_id = p.discipline_id where 1=1
+        <if test="bo.zoneCode != null">
+            and c.zone_code = #{bo.zoneCode}
+        </if>
+        <if test="bo.projectCode != null">
+            and p.project_code = #{bo.projectCode}
+        </if>
+        <if test="bo.mdbPurchasePackageNo != null">
+            and c.mdb_purchase_package_no = #{bo.mdbPurchasePackageNo}
+        </if>
+        <if test="bo.disciplineName != null">
+            <bind name="disciplineName" value="'%' + bo.disciplineName + '%'"/>
+            and c.discipline_name like #{disciplineName}
+        </if>
+        <if test="bo.disciplineId != null">
+            <bind name="disciplineId" value="'%' + bo.disciplineId + '%'"/>
+            and c.discipline_id like #{disciplineId}
+        </if>
+        <if test="bo.mdblargeName != null">
+            <bind name="mdblargeName" value="'%' + bo.mdblargeName + '%'"/>
+            and c.mdblarge_name like #{mdblargeName}
+        </if>
+        <if test="bo.mdblargeId != null">
+            <bind name="mdblargeId" value="'%' + bo.mdblargeId + '%'"/>
+            and c.mdblarge_id like #{mdblargeId}
+        </if>
+        <if test="bo.mdbmediumName != null">
+            <bind name="mdbmediumName" value="'%' + bo.mdbmediumName + '%'"/>
+            and c.mdbmedium_name like #{mdbmediumName}
+        </if>
+        <if test="bo.mdbmediumId != null">
+            <bind name="mdbmediumId" value="'%' + bo.mdbmediumId + '%'"/>
+            and c.mdbmedium_id like #{mdbmediumId}
+        </if>
+        <if test="bo.mdbsmallName != null">
+            <bind name="mdbsmallName" value="'%' + bo.mdbsmallName + '%'"/>
+            and c.mdbsmall_name like #{mdbsmallName}
+        </if>
+        <if test="bo.mdbsmallId != null">
+            <bind name="mdbsmallId" value="'%' + bo.mdbsmallId + '%'"/>
+            and c.mdbmedium_id like #{mdbsmallId}
+        </if>
+    </select>
+
+</mapper>

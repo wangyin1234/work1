@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.main.mapper.ProjectPurPackageTMapper">
+    <sql id="tableName">
+        project_pur_package_t
+    </sql>
+
+    <sql id="baseColumn">
+        id,pur_pck_id,status,create_by,create_time,update_by,update_time,project_id,project_code,discipline_id,mdb_purchase_package_no,zone_code,discipline_name,sub_package_no
+    </sql>
+
+</mapper>

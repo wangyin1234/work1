@@ -1,0 +1,35 @@
+#spring
+spring:
+  cloud:
+    nacos:
+      discovery:
+        # 注册中心地址
+        server-addr: middle.wison.com:8848
+        # 命名空间
+        namespace: 7159aac1-0dba-4fc7-81ee-794f0ca9a7e0
+      config:
+        # 配置中心地址
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        # 配置文件格式
+        file-extension: yaml
+        # 命名空间
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+
+
+fwoa:
+  url: https://office.wison.com/services/WorkflowService
+
+workFlowId:
+  purPackage: 23661
+  projectMrPlanFlowId: 24101
+  mrReleaseFlowId: 24102
+  tbeDesignFlowId: 24201
+  tbeBuyFlowId: 24202
+
+supplier:
+  url:
+    pushClarification: https://supplier.wison.com/api/Open/PushTechinicalBidClarificationFinish
+    send: https://supplier.wison.com/api/Open/PushTechinicalBid
+    pushFinish: https://supplier.wison.com/api/Open/PushTechinicalBidFinish
+    reply: https://supplier.wison.com/api/Open/PushTechinicalBidClarificationFileData
+    pushSupplierParticipateFlag: https://supplier.wison.com/api/Open/PushTechinicalBidSupplierParticipateFlag

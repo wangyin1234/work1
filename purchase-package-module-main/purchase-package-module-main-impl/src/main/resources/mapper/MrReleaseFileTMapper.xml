@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.main.mapper.MrReleaseFileTMapper">
+    <sql id="tableName">
+        mr_release_file_t
+    </sql>
+
+    <sql id="baseColumn">
+        id,file_name,file_link,file_type,create_by,update_by,create_time,update_time,zone_code,project_code,technical_document_no_wison,version,category
+    </sql>
+
+</mapper>

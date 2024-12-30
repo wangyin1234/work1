@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.main.mapper.MrReleaseTMapper">
+    <sql id="tableName">
+        mr_release_t
+    </sql>
+
+    <sql id="baseColumn">
+        id,create_by,create_time,update_by,update_time,project_id,project_code,discipline_name,mdb_purchase_package_no,zone_code,technical_document_no_wison,technical_document_no_others,file_name,design_manager,buyer,mdb_purchase_package_name,review_status,done_status,version,category,current_handler,preparer,issue_date,comment,material_control_engineer,procurement_manager,discipline_id,request_id,need_technical,design_discipline_reviewer,buyer_email,material_control_engineer_email,design_discipline_reviewer_email
+    </sql>
+
+</mapper>

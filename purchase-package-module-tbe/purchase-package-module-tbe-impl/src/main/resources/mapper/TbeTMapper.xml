@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wison.purchase.packages.module.tbe.mapper.TbeTMapper">
+    <sql id="tableName">
+        tbe_t
+    </sql>
+
+    <sql id="baseColumn">
+        price_check_number,id,version_number,quotation_deadline,plan_revealing_technical_proposal_date,request_for_quotation,create_by,create_time,update_by,update_time,required_tbe_date,head_of_design,compilation_advice,file_name,file_link,technical_review_file_name,technical_review_file_link,is_finish,actual_revealing_technical_proposal_date,zone_code,project_code,creator_name,creator_email,buyer,buyer_email,buyer_name,design_request_id,design_review_status,buy_request_id,buy_review_status,company_code,code
+    </sql>
+
+    <resultMap id="OneToMany" type="com.wison.purchase.packages.module.tbe.domain.vo.TbeTVo">
+        <collection property="inquiryTechnicalDocuments"
+                    column="{priceCheckNumber=price_check_number,zoneCode=zone_code,projectCode=project_code}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.InquiryTechnicalDocumentsTMapper.listByPriceCheckNumber">
+        </collection>
+        <collection property="inquiryTechnicalDocumentsReplies"
+                    column="{priceCheckNumber=price_check_number,zoneCode=zone_code,projectCode=project_code}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.InquiryTechnicalDocumentsReplyTMapper.listByPriceCheckNumber">
+        </collection>
+        <collection property="inquiryRevealingDocuments"
+                    column="{priceCheckNumber=price_check_number,zoneCode=zone_code,projectCode=project_code}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.InquiryRevealingDocumentsTMapper.listByPriceCheckNumber">
+        </collection>
+        <collection property="inquiryRevealingDocumentReplies"
+                    column="{priceCheckNumber=price_check_number,zoneCode=zone_code,projectCode=project_code}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.InquiryRevealingDocumentsReplyTMapper.listByPriceCheckNumber">
+        </collection>
+        <collection property="tbeResultFiles"
+                    column="{priceCheckNumber=price_check_number,zoneCode=zone_code,projectCode=project_code}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.TbeResultFileTMapper.listByPriceCheckNumber">
+        </collection>
+        <collection property="tbeSuppliers"
+                    column="{priceCheckNumber=price_check_number,,zoneCode=zone_code,projectCode=project_code,technicalReviewOpinion=technicalReviewOpinion}"
+                    select="com.wison.purchase.packages.module.tbe.mapper.TbeSupplierTMapper.listByPriceCheckNumber">
+        </collection>
+    </resultMap>
+
+    <select id="queryList" resultMap="OneToMany">
+        select<include refid="baseColumn"/>, #{technicalReviewOpinion} as technicalReviewOpinion from
+        <include refid="tableName"/>
+        where zone_code = #{zoneCode} and project_code = #{projectCode}
+        <if test="priceCheckNumber != null">
+            and price_check_number = #{priceCheckNumber}
+        </if>
+    </select>
+
+</mapper>
